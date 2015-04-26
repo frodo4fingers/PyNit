@@ -6,6 +6,7 @@ all configs in the nitrogen folder (except for nitrogen.cfg) this script works
 too for dual monitors
 
 ![image](https://raw.githubusercontent.com/frodo4fingers/PyNit/master/PyNit.png)
+wallpaper from [interfacelift](https://interfacelift.com/wallpaper/details/3886/painted_plains.html)
 
 what you need to do
 ----------------------
