@@ -5,7 +5,7 @@ script for manually changing your wallpaper from the obmenu. since it changes
 all configs in the nitrogen folder (except for nitrogen.cfg) this script works 
 too for dual monitors
 
-![image](https://raw.githubusercontent.com/frodo4fingers/PyNit/work%40PyNit/PyNit.png)
+![image](https://raw.githubusercontent.com/frodo4fingers/PyNit/master/PyNit.png)
 
 what you need to do
 ----------------------
