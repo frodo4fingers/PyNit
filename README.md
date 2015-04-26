@@ -39,4 +39,4 @@ TO DO
 ----------------------
 - won't work with spaces in filenames for now
 - PyNit still won't work with dour letter ending graphic files (tiff, jpeg)
-
+- well the backup function even backups the backups so...
