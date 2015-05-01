@@ -5,7 +5,6 @@
 """
 
 import os, sys, time, datetime, random
-from PIL import Image
 
 def check4wallpapers(path_wall):
     """
@@ -232,7 +231,7 @@ def transition(path_wall, wallpapers, size, step, trans_step):
         overlay two following images from the wallpapers list, save them and 
         write the new overlay to the next list
     """
-
+    from PIL import Image
     key = checkRun(path_wall)
     if key == True:
 
