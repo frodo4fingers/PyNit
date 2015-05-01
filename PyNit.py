@@ -349,11 +349,9 @@ def main(argv):
     
     ###########################################################################
     ### keyword for search in menu.xml so PyNit knows where to put stuff
-    #key = 'PyNit.py -C</execute>\n '+ '\t'*5 +' </action>\n '+ '\t'*4 +' </item>\n '+ '\t'*4 +' <separator/>'
     key = 'PyNit.py -C'
     ###
     ###########################################################################
-
 
     if args.alter_cfg:
         ## call to change configs so wallpaper will change
