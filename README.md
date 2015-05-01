@@ -7,6 +7,7 @@ too for dual monitors
 
 ![image](https://raw.githubusercontent.com/frodo4fingers/PyNit/master/PyNit.png)
 wallpaper from [interfacelift](https://interfacelift.com/wallpaper/details/3886/painted_plains.html)
+
 **see [wiki](https://github.com/frodo4fingers/PyNit/wiki)**
 what you need to do
 ----------------------
