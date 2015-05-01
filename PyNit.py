@@ -1,4 +1,8 @@
 #!/usr/bin/python
+"""
+@ frodo4fingers
+@ january 2015
+"""
 
 import os, sys, time, datetime, random
 from PIL import Image
@@ -29,24 +33,24 @@ def clear_xml(path_menuxml, wallpapers):
 
     xml = open(path_menuxml)
 
-    raw_array = []
+    raw_list = []
     for line in xml:
-        raw_array.append(line)
-
+        raw_list.append(line)
+    xml.close()
     ## mark the whole xml structure around the embedded wallpaper
     ## replace it later, otherwise the indizes would change during the process
-    for i in range(len(raw_array)):
+    for i in range(len(raw_list)):
         for item in wallpapers:
-            if item in raw_array[i]:
-                raw_array[i-2] = 'NOTINURXML\n'
-                raw_array[i-1] = 'NOTINURXML\n'
-                raw_array[i-0] = 'NOTINURXML\n'
-                raw_array[i+1] = 'NOTINURXML\n'
-                raw_array[i+2] = 'NOTINURXML\n'
+            if item in raw_list[i]:
+                raw_list[i-2] = 'NOTINURXML\n'
+                raw_list[i-1] = 'NOTINURXML\n'
+                raw_list[i-0] = 'NOTINURXML\n'
+                raw_list[i+1] = 'NOTINURXML\n'
+                raw_list[i+2] = 'NOTINURXML\n'
 
     ## now write everything except marked lines
     with open(path_menuxml + '.tmp', 'w') as out:
-        for item in raw_array:
+        for item in raw_list:
             if not 'NOTINURXML' in item:
                 out.write(str(item))
         out.close()
@@ -68,13 +72,13 @@ def write_xml(key, path_menuxml, wallpapers):
 
     xml = open(path_menuxml)
 
-    raw_array = []
+    raw_list = []
     for line in xml:
-        raw_array.append(line)
-
+        raw_list.append(line)
+    xml.close()
     ## search for the given key to get position
-    for i in range(len(raw_array)):
-        if key in raw_array[i]:
+    for i in range(len(raw_list)):
+        if key in raw_list[i]:
             key_index = i
         pass
 
@@ -87,18 +91,18 @@ def write_xml(key, path_menuxml, wallpapers):
         THREE <separator/> --------> therefore a +4!!!!!!!!
         """
         ## write a line/entry for every wallpaper for obmenu
-        raw_array.insert(key_index + 4, '\t'*4 + '<item label="' + pic[:-4] + '">\n' + '\t'*5 + '<action name="Execute">\n ' + '\t'*6 + '<execute>PyNit.py -a ' + pic + '</execute>\n ' + '\t'*5 + '</action>\n ' + '\t'*4 + '</item>\n')
+        raw_list.insert(key_index + 4, '\t'*4 + '<item label="' + pic[:-4] + '">\n' + '\t'*5 + '<action name="Execute">\n ' + '\t'*6 + '<execute>PyNit.py -a ' + pic + '</execute>\n ' + '\t'*5 + '</action>\n ' + '\t'*4 + '</item>\n')
 
     with open(path_menuxml + '.tmp', 'w') as out:
 
-        for item in raw_array:
+        for item in raw_list:
             out.write(str(item))
         out.close()
 
     os.rename(path_menuxml + '.tmp', path_menuxml)
     os.system('openbox --reconfigure')
 
-    """END OF write_xml"""
+    """END OF WRITE_XML"""
 
 def alter_cfg(path_nitro, path_wall, wallpaper):
     """
@@ -149,7 +153,7 @@ def backup(path_nitro, path_menuxml):
     
     for config in os.listdir(path_nitro):
         
-        if not config == 'nitrogen.cfg' and not os.path.isdir(path_nitro + config):
+        if not config == 'nitrogen.cfg' and not os.path.isdir(path_nitro + config) and not config.endswith('.bak'):
 
             os.system('cp '+ path_nitro + config +' '+ path_nitro + config[:-4] + stamp +'.bak')
 
@@ -197,6 +201,7 @@ def checkRun(path_wall):
 
     return key
 
+    """END OF CHECKRUN"""
 
 def shuffle(wallpapers):
     """
@@ -290,8 +295,7 @@ def main(argv):
         Well. That's the main function..
     """
     import argparse
-    parser = argparse.ArgumentParser(description = 'Wallpaper management \
-                                                    for obmenu')
+    parser = argparse.ArgumentParser(description = 'Wallpaper management for obmenu')
 
     parser.add_argument('-a', '--alter',
         dest = 'alter_cfg',
