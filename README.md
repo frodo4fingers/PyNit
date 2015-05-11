@@ -12,6 +12,7 @@ wallpaper from [interfacelift](https://interfacelift.com/wallpaper/details/3886/
 what you need to do
 ----------------------
 - download [PIL - the Python Imaging Library](https://github.com/python-pillow/Pillow)
+- download [natsorted](https://pypi.python.org/pypi/natsort) ...but that is optional
 - download PyNit
 - save in folder
     + make executable and ln -s to /usr/bin/
@@ -30,13 +31,14 @@ PyNit.py -a          --> [a]lter the cfgs in nitrogen with given picture
 PyNit.py -c          --> will [c]lear wallpaper entries from obmenu
 PyNit.py -B          --> will [B]ackup the menu.xml and all nitrogen configs from given paths with a time stamp
 PyNit.py -r -s       --> will [r]andomly choose the wallpaper at given time step in seconds. run second time to stop.
-PyNit.py -T -t -s -z --> will create a [T]ransition between two consecutive wallpapers with given count of s[t]eps, then rest for a few [s]econds. due to the overlay process a resolution or picture si[z]e must be given if not 1920x1080 (default). run second time to stop.
+bPyNit.py -T -t -s -z --> will create a [T]ransition between two consecutive wallpapers with given count of s[t]eps, then rest for a few [s]econds. due to the overlay process a resolution or picture si[z]e must be given if not 1920x1080 (default). run second time to stop.
 ```
 
 what i fixed
 ----------------------
 - writing to/ deleting from your xml-file is now bug free!!
 - the backup function won't backup the backups
+- if natsorted is installed your wallpapers will appear properly sorted in ObMenu
 
 TO DO
 ----------------------

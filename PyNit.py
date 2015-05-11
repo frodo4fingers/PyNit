@@ -11,7 +11,8 @@ def check4wallpapers(path_wall):
         this function will read the wallpapers from given directory containing 
         such
     """
-
+    from natsort import natsorted, ns
+    
     wallpapers = []
 
     for pic in os.listdir(path_wall):
@@ -20,13 +21,19 @@ def check4wallpapers(path_wall):
 
             wallpapers.append(pic)
 
+    try:
+        wallpapers = natsorted(wallpapers, alg=ns.IGNORECASE)
+    except ImportError:
+        pass
+
+    print(wallpapers)
     return wallpapers
 
     """END OF CHECK4WALLPAPERS"""
 
 def clear_xml(path_menuxml, wallpapers):
     """
-        delete all wallpaper entries from dropdown menu 'Backgrounds' maybe 
+        delete all wallpaper entries from dropdown menu "Backgrounds" maybe 
         not that efficient but clean (Backgrounds... see "key" in def main)
     """
 
@@ -210,7 +217,6 @@ def shuffle(wallpapers):
     return random.shuffle(wallpapers)
 
     """END OF SHUFFLE"""
-
 
 def resize(size, image):
     """
