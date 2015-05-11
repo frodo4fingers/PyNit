@@ -26,7 +26,6 @@ def check4wallpapers(path_wall):
     except ImportError:
         pass
 
-    print(wallpapers)
     return wallpapers
 
     """END OF CHECK4WALLPAPERS"""
