@@ -96,7 +96,7 @@ def write_xml(key, path_menuxml, wallpapers):
         THREE <separator/> --------> therefore a +4!!!!!!!!
         """
         ## write a line/entry for every wallpaper for obmenu
-        raw_list.insert(key_index + 4, '\t'*4 + '<item label="' + pic[:-4] + '">\n' + '\t'*5 + '<action name="Execute">\n ' + '\t'*6 + '<execute>PyNit.py -a ' + pic + '</execute>\n ' + '\t'*5 + '</action>\n ' + '\t'*4 + '</item>\n')
+        raw_list.insert(key_index + 4, '\t'*4 + '<item label="' + pic.split('.')[0] + '">\n' + '\t'*5 + '<action name="Execute">\n ' + '\t'*6 + '<execute>PyNit.py -a ' + pic + '</execute>\n ' + '\t'*5 + '</action>\n ' + '\t'*4 + '</item>\n')
 
     with open(path_menuxml + '.tmp', 'w') as out:
 
