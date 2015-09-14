@@ -4,15 +4,16 @@
 @ january 2015
 """
 
-import os, sys, time, datetime, random
+import os
+import sys, time, datetime, random
 
 def check4wallpapers(path_wall):
     """
-        this function will read the wallpapers from given directory containing 
+        this function will read the wallpapers from given directory containing
         such
     """
     from natsort import natsorted, ns
-    
+
     wallpapers = []
 
     for pic in os.listdir(path_wall):
@@ -32,7 +33,7 @@ def check4wallpapers(path_wall):
 
 def clear_xml(path_menuxml, wallpapers):
     """
-        delete all wallpaper entries from dropdown menu "Backgrounds" maybe 
+        delete all wallpaper entries from dropdown menu "Backgrounds" maybe
         not that efficient but clean (Backgrounds... see "key" in def main)
     """
 
@@ -68,10 +69,10 @@ def clear_xml(path_menuxml, wallpapers):
 def write_xml(key, path_menuxml, wallpapers):
     """
         here the new wallpaper names will be written to the xml file.
-        therefore an entry must be made once in obmenu by hand.. named 
+        therefore an entry must be made once in obmenu by hand.. named
         'Backgrounds' by default.
-        
-        !!!please consider the "key" value in def main!!! and have a look in 
+
+        !!!please consider the "key" value in def main!!! and have a look in
         your xml structure!!!
     """
 
@@ -91,8 +92,8 @@ def write_xml(key, path_menuxml, wallpapers):
         """
         use former position to receive the actual position to start with
         ..in my menu.xml i want to start AFTER (see key in def main)
-        
-        <execute>PyNit.py -C</execute> ONE </action> TWO </item> 
+
+        <execute>PyNit.py -C</execute> ONE </action> TWO </item>
         THREE <separator/> --------> therefore a +4!!!!!!!!
         """
         ## write a line/entry for every wallpaper for obmenu
@@ -111,13 +112,13 @@ def write_xml(key, path_menuxml, wallpapers):
 
 def alter_cfg(path_nitro, path_wall, wallpaper):
     """
-        this function will change the entries in the cfg files in the nitrogen 
+        this function will change the entries in the cfg files in the nitrogen
         directory
     """
 
     for config in os.listdir(path_nitro):
 
-        ## check for original nitrogen config and make sure there isn't a 
+        ## check for original nitrogen config and make sure there isn't a
         ## folder containing stuff
         if not config == 'nitrogen.cfg' and not os.path.isdir(path_nitro + config):
 
@@ -144,7 +145,7 @@ def alter_cfg(path_nitro, path_wall, wallpaper):
 
 def backup(path_nitro, path_menuxml):
     """
-        function to copy/backup the config files or xml file before it will be 
+        function to copy/backup the config files or xml file before it will be
         changed.
     """
     ## create timestamp
@@ -153,11 +154,11 @@ def backup(path_nitro, path_menuxml):
     ## make it human readable
     ## %Year %month %day %Hour %Minute... you might add %Second
     stamp = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M')
-    
+
     os.system('cp '+ path_menuxml +' '+ path_menuxml[:-4] + stamp + '.bak')
-    
+
     for config in os.listdir(path_nitro):
-        
+
         if not config == 'nitrogen.cfg' and not os.path.isdir(path_nitro + config) and not config.endswith('.bak'):
 
             os.system('cp '+ path_nitro + config +' '+ path_nitro + config[:-4] + stamp +'.bak')
@@ -168,7 +169,7 @@ def randomize(path_nitro, path_wall, wallpapers, step):
     """
         switch wallpaper randomly every now and then
     """
-    
+
     key = checkRun(path_wall)
     if key == True:
 
@@ -212,7 +213,7 @@ def shuffle(wallpapers):
     """
         shuffle the wallpaper list and return it
     """
-    
+
     return random.shuffle(wallpapers)
 
     """END OF SHUFFLE"""
@@ -233,7 +234,7 @@ def resize(size, image):
 
 def transition(path_wall, wallpapers, size, step, trans_step):
     """
-        overlay two following images from the wallpapers list, save them and 
+        overlay two following images from the wallpapers list, save them and
         write the new overlay to the next list
     """
     from PIL import Image
@@ -328,7 +329,7 @@ def main(argv):
         help = 'seconds between two wallpapers',
         type = int,
         default = 15)
-    
+
     parser.add_argument('-T', '--transition',
         dest = 'transition',
         help = 'transition between two wallpapers',
@@ -354,7 +355,7 @@ def main(argv):
     path_wall = '/home/frodo/Pictures/'
     ###
     ###########################################################################
-    
+
     ###########################################################################
     ### keyword for search in menu.xml so PyNit knows where to put stuff
     key = 'PyNit.py -C'
@@ -388,7 +389,7 @@ def main(argv):
         wallpapers = check4wallpapers(path_wall)
         ## make switch
         transition(path_wall, wallpapers, args.size, args.step, args.trans_step)
-    
+
     else:
         ## read them...
         wallpapers = check4wallpapers(path_wall)
