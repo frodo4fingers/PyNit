@@ -6,6 +6,7 @@
 
 import os, sys, time, datetime, random
 
+
 def check4wallpapers(path_wall):
     """
         this function will read the wallpapers from given directory containing
@@ -29,6 +30,7 @@ def check4wallpapers(path_wall):
     return wallpapers[::-1]
 
     """END OF CHECK4WALLPAPERS"""
+
 
 def clear_xml(path_menuxml, wallpapers):
     """
@@ -64,6 +66,7 @@ def clear_xml(path_menuxml, wallpapers):
     os.system("openbox --reconfigure")
 
     """END OF CLEAR_XML"""
+
 
 def write_xml(key, path_menuxml, wallpapers):
     """
@@ -109,6 +112,7 @@ def write_xml(key, path_menuxml, wallpapers):
 
     """END OF WRITE_XML"""
 
+
 def alter_cfg(path_nitro, path_wall, wallpaper):
     """
         this function will change the entries in the cfg files in the nitrogen
@@ -142,6 +146,7 @@ def alter_cfg(path_nitro, path_wall, wallpaper):
 
     """END OF ALTER_CFG"""
 
+
 def backup(path_nitro, path_menuxml):
     """
         function to copy/backup the config files or xml file before it will be
@@ -160,9 +165,10 @@ def backup(path_nitro, path_menuxml):
 
         if not config == "nitrogen.cfg" and not os.path.isdir(path_nitro + config) and not config.endswith(".bak"):
 
-            os.system("cp "+ path_nitro + config +" "+ path_nitro + config[:-4] + stamp +".bak")
+            os.system("cp " + path_nitro + config + " " + path_nitro + config[:-4] + stamp + ".bak")
 
     """END OF BACKUP"""
+
 
 def randomize(path_nitro, path_wall, wallpapers, step):
     """
@@ -170,7 +176,7 @@ def randomize(path_nitro, path_wall, wallpapers, step):
     """
 
     key = checkRun(path_wall)
-    if key == True:
+    if key is True:
 
         while True:
             ## pick a random wallpaper from list
@@ -181,6 +187,7 @@ def randomize(path_nitro, path_wall, wallpapers, step):
             time.sleep(step)
 
     """END OF RANDOMIZE"""
+
 
 def checkRun(path_wall):
     """
@@ -208,6 +215,7 @@ def checkRun(path_wall):
 
     """END OF CHECKRUN"""
 
+
 def shuffle(wallpapers):
     """
         shuffle the wallpaper list and return it
@@ -216,6 +224,7 @@ def shuffle(wallpapers):
     return random.shuffle(wallpapers)
 
     """END OF SHUFFLE"""
+
 
 def resize(size, image):
     """
@@ -227,9 +236,10 @@ def resize(size, image):
     new_width = int(wrong_sized[0]*size[0]/wrong_sized[0])
     new_height = int(wrong_sized[1]*size[1]/wrong_sized[1])
 
-    return image.resize((new_width, new_height), Image.ANTIALIAS)
+    return image.resize((new_width, new_height), image.ANTIALIAS)
 
     """END OF RESIZE"""
+
 
 def transition(path_wall, wallpapers, size, step, trans_step):
     """
@@ -238,7 +248,7 @@ def transition(path_wall, wallpapers, size, step, trans_step):
     """
     from PIL import Image
     key = checkRun(path_wall)
-    if key == True:
+    if key is True:
 
         ## for a clean picture folder, all unvisible images will be stored in here
         path_trans = path_wall + ".PyNit_trash/"
@@ -256,7 +266,7 @@ def transition(path_wall, wallpapers, size, step, trans_step):
             overlay = Image.open(path_wall + new_pic)
 
             ## check if both pictures have desired size
-            ## a dummy is prdoduced there will be no harm done to your pictures
+            ## a dummy is produced there will be no harm done to your pictures
             if background.size != size:
                 background = resize(size, background)
                 background.save(path_trans + "dummy_background.jpg","JPEG")
@@ -294,6 +304,7 @@ def transition(path_wall, wallpapers, size, step, trans_step):
 
     """END OF TRANSITION"""
 
+
 def main(argv):
     """
         Well. That"s the main function..
@@ -302,48 +313,48 @@ def main(argv):
     parser = argparse.ArgumentParser(description = "Wallpaper management for obmenu")
 
     parser.add_argument("-a", "--alter",
-        dest = "alter_cfg",
-        help = "change wallpaper in configuration file of nitrogen")
+        dest="alter_cfg",
+        help="change wallpaper in configuration file of nitrogen")
 
     parser.add_argument("-C", "--clear",
-        dest = "clear",
-        help = "clear the menu.xml from all wallpapers",
-        default = False,
-        action = "store_true")
+        dest="clear",
+        help="clear the menu.xml from all wallpapers",
+        default=False,
+        action="store_true")
 
     parser.add_argument("-B", "--backup",
-        dest = "backup",
-        help = "save the configs or xml",
-        default = False,
-        action = "store_true")
+        dest="backup",
+        help="save the configs or xml",
+        default=False,
+        action="store_true")
 
     parser.add_argument("-r", "--random",
-        dest = "random",
-        help = "run randomly through the wallpapers",
-        default = False,
-        action = "store_true")
+        dest="random",
+        help="run randomly through the wallpapers",
+        default=False,
+        action="store_true")
 
     parser.add_argument("-s", "--step",
-        dest = "step",
-        help = "seconds between two wallpapers",
-        type = int,
-        default = 15)
+        dest="step",
+        help="seconds between two wallpapers",
+        type=int,
+        default=15)
 
     parser.add_argument("-T", "--transition",
-        dest = "transition",
-        help = "transition between two wallpapers",
-        action = "store_true")
+        dest="transition",
+        help="transition between two wallpapers",
+        action="store_true")
 
     parser.add_argument("-t", "--trans_step",
-        dest = "trans_step",
-        help = "number of overlaying steps",
-        type = int,
-        default = 10)
+        dest="trans_step",
+        help="number of overlaying steps",
+        type=int,
+        default=10)
 
     parser.add_argument("-z", "--size",
-        dest = "size",
-        help = "maximum monitor/desired resolution",
-        default = (1920,1080))
+        dest="size",
+        help="maximum monitor/desired resolution",
+        default=(1920, 1080))
 
     args = parser.parse_args()
 
