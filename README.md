@@ -25,16 +25,36 @@ what you need to do
 
 options
 ----------------------
-```python
-PyNit.py             --> will read your wallpapers and create entries in menu.xml
-PyNit.py -a          --> [a]lter the cfgs in nitrogen with given picture
-PyNit.py -c          --> will [c]lear wallpaper entries from obmenu
-PyNit.py -B          --> will [B]ackup the menu.xml and all nitrogen configs from given paths with a time stamp
-PyNit.py -r -s       --> will [r]andomly choose the wallpaper at given time step in seconds. run second time to stop.
-PyNit.py -T -t -s -z --> will create a [T]ransition between two consecutive wallpapers with given count of s[t]eps, then rest for a few [s]econds. due to the overlay process a resolution or picture si[z]e must be given if not 1920x1080 (default). run second time to stop.
++ w/o any option it will check for wallpapers on the wallpaper path and list them ready to use in your ObMenu
+    ```python
+PyNit.py
 ```
 
++ to alter your nitrogen configs and eventually change the wallpaper this is what is behind every wallpaper entry in ObMenu
+    ```python
+Pynit.py -a [picture]
+```
 
-TO DO
++ to clear every wallpaper entry from your ObMenu. Make sure to use this option if you're about to delete or rename wallpapers!
+    ```python
+PyNit.py -C
+```
+
++ to backup all nitrogen configs and menu.xml with a time stamp
+    ```python
+PyNit.py -B
+```
+
++ to randomly change your wallpaper w/o much fuzzing around. set the intervall between with seconds and run second time to stop it
+    ```python
+PyNit.py -r -s [X]
+```
+
++ slightly more fancy and costly is a Transistion between two wallpapers. to give PyNit the number of steps use t but note that the more steps you choose the longer it takes and the cpu usage will rise. s is again the time between two wallpapers. you need to specify z in script (easier) for your screen resolution if not all of your wallpapers are the same size. run second time to stop it and note if you stop the script right in the transition the two overlaying pictures will stay :)
+    ```python
+PyNit.py -T -t [X] -s [X] -z [(X,Y)]
+
+
+TODO
 ----------------------
 - won't work with spaces in filenames for now
