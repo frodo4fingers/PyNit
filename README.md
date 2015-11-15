@@ -34,14 +34,7 @@ PyNit.py -r -s       --> will [r]andomly choose the wallpaper at given time step
 PyNit.py -T -t -s -z --> will create a [T]ransition between two consecutive wallpapers with given count of s[t]eps, then rest for a few [s]econds. due to the overlay process a resolution or picture si[z]e must be given if not 1920x1080 (default). run second time to stop.
 ```
 
-what i fixed
-----------------------
-- writing to/ deleting from your xml-file is now bug free!!
-- the backup function won't backup the backups
-- if natsorted is installed your wallpapers will appear properly sorted in ObMenu
-- four letter ending graphic files like "jpeg" are working
 
 TO DO
 ----------------------
 - won't work with spaces in filenames for now
-- PyNit still won't work with dour letter ending graphic files (tiff, jpeg)
