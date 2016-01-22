@@ -4,6 +4,7 @@
 @ january 2015
 """
 
+# from dobt import
 import os, sys, time, datetime, random
 
 
@@ -28,8 +29,6 @@ def check4wallpapers(path_wall):
         pass
 
     return wallpapers[::-1]
-
-    """END OF CHECK4WALLPAPERS"""
 
 
 def clear_xml(path_menuxml, wallpapers):
@@ -64,8 +63,6 @@ def clear_xml(path_menuxml, wallpapers):
 
     os.rename(path_menuxml + ".tmp", path_menuxml)
     os.system("openbox --reconfigure")
-
-    """END OF CLEAR_XML"""
 
 
 def write_xml(key, path_menuxml, wallpapers):
@@ -110,8 +107,6 @@ def write_xml(key, path_menuxml, wallpapers):
     os.rename(path_menuxml + ".tmp", path_menuxml)
     os.system("openbox --reconfigure")
 
-    """END OF WRITE_XML"""
-
 
 def alter_cfg(path_nitro, path_wall, wallpaper):
     """
@@ -143,8 +138,7 @@ def alter_cfg(path_nitro, path_wall, wallpaper):
                 inf.close()
             os.rename(path_nitro + config + ".tmp", path_nitro + config)
     os.system("nitrogen --restore")
-
-    """END OF ALTER_CFG"""
+    # os.system("nitrogen --restore && swico.py -i")
 
 
 def backup(path_nitro, path_menuxml):
@@ -159,15 +153,13 @@ def backup(path_nitro, path_menuxml):
     ## %Year %month %day %Hour %Minute... you might add %Second
     stamp = datetime.datetime.fromtimestamp(ts).strftime("%Y%m%d%H%M")
 
-    os.system("cp "+ path_menuxml +" "+ path_menuxml[:-4] + stamp + ".bak")
+    os.system("cp " + path_menuxml + " " + path_menuxml[:-4] + stamp + ".bak")
 
     for config in os.listdir(path_nitro):
 
         if not config == "nitrogen.cfg" and not os.path.isdir(path_nitro + config) and not config.endswith(".bak"):
 
             os.system("cp " + path_nitro + config + " " + path_nitro + config[:-4] + stamp + ".bak")
-
-    """END OF BACKUP"""
 
 
 def randomize(path_nitro, path_wall, wallpapers, step):
@@ -185,8 +177,6 @@ def randomize(path_nitro, path_wall, wallpapers, step):
             alter_cfg(path_nitro, path_wall, random_pic)
             ## rest STEP seconds
             time.sleep(step)
-
-    """END OF RANDOMIZE"""
 
 
 def checkRun(path_wall):
@@ -213,8 +203,6 @@ def checkRun(path_wall):
 
     return key
 
-    """END OF CHECKRUN"""
-
 
 def shuffle(wallpapers):
     """
@@ -237,8 +225,6 @@ def resize(size, image):
     new_height = int(wrong_sized[1]*size[1]/wrong_sized[1])
 
     return image.resize((new_width, new_height), image.ANTIALIAS)
-
-    """END OF RESIZE"""
 
 
 def transition(path_wall, wallpapers, size, step, trans_step):
@@ -301,8 +287,6 @@ def transition(path_wall, wallpapers, size, step, trans_step):
                 random.shuffle(wallpapers)
             else:
                 continue
-
-    """END OF TRANSITION"""
 
 
 def main(argv):
@@ -407,8 +391,6 @@ def main(argv):
         clear_xml(path_menuxml, wallpapers)
         ## ...write them
         write_xml(key, path_menuxml, wallpapers)
-
-    """END OF MAIN"""
 
 
 if __name__ == "__main__":
